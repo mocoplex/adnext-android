@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+        body{padding:15px;}
+        .button {
+            width:100%;
+            border: none;
+            color:#fff;
+            padding: 15px 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px;
+            cursor: pointer;
+            border-radius:10px;
+        }
+        .google {
+            background-color: #ff1407;
+        }
+        .facebook {
+            background-color: #4260b4;
+        }
+        .kakao {
+            background-color: #fae700;
+            color: #411b1c;
+        }
+        </style>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '414314779099945');
+          fbq('track', 'PageView');
+          fbq('set', 'mobileBridge', '414314779099945', '2517910278249687');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+          src="https://www.facebook.com/tr?id=414314779099945&ev=PageView&noscript=1"
+        /></noscript>
+        <!-- End Facebook Pixel Code -->
+
+        <!-- kakao Pixel Code -->
+        <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+        <!-- kakao Pixel Code -->
+
+        <!-- Global site tag (gtag.js) - AdWords: 961230560 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-961230560"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-961230560');
+        </script>
+        <!-- Global site tag -->
+
+        <script>
+        var _ratID = '5476d35e0cf2fd8cbba18b7c';
+        function nwTrkPushEvent(n)
+        {"undefined"!=typeof globalNWTrk?
+        globalNWTrk.sendEvent(n):("undefined"==typeof gNWTrk&&(window.gNWTrk=new Array),gNWTrk.push(n))}
+        function _nw_trk_initialize(){window.globalNWTrk=new RatNWTrk,globalNWTrk.jsInit(_ratID)}
+        </script>
+        <script async type="text/javascript" src="//mscript.myshp.us/script/rat_nw_common.js"></script>
+
+    </head>
+    <body>
+
+        <div class="button facebook" onclick="javascirpt:clkFacebook();">조회하기</div>
+        <div class="button kakao" onclick="javascirpt:clkKakao();">조회하기</div>
+        <div class="button kakao" onclick="javascirpt:buyKakao();">구매하기</div>
+        <div class="button google" onclick="javascirpt:clkGoogle();">조회하기</div>
+
+        <script>
+        function generateObjectId(){
+            var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+            return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+                return (Math.random() * 16 | 0).toString(16);
+            }).toLowerCase();
+        }
+
+        function clkFacebook(){
+            sendView();
+            fbq('track', 'ViewContent', {
+                content_ids : '12345',
+                content_type : 'product',
+                //contents : [{ id: '12345', quantity: '1', item_price: '159000' }]
+            });
+            /*
+            fbq('track', 'Purchase', {
+                content_ids : '12345',
+                content_type : 'product',
+                contents : [{ id: '12345', quantity: '1', item_price: '159000' }]
+                value: '159000', 
+                currency: 'KRW'
+            });*/
+        }
+        function clkKakao(){
+            sendView();
+            kakaoPixel('8254003883982697027').pageView();
+            kakaoPixel('8254003883982697027').viewContent({id: '12345'});
+            var evt_data = {};
+            evt_data.id = '12345';
+            logEvent("kakaoEvent", "view", evt_data);
+
+            /*
+            kakaoPixel('8254003883982697027').pageView();
+            kakaoPixel('8254003883982697027').purchase({
+                total_quantity: '1',
+                total_price: '159000',
+                currency: "KRW",
+                products: [
+                    { name: '애플 에어팟 Apple AirPods', quantity: '1', price: '159000' }
+                ]
+            });
+            */
+        }
+        function buyKakao(){
+            sendBuy();
+            kakaoPixel('8254003883982697027').pageView();
+            kakaoPixel('8254003883982697027').purchase({
+                total_quantity: '1',
+                total_price: '159000',
+                currency: 'KRW',
+                products: [
+                    { name: '애플 에어팟 Apple AirPods', quantity: '1', price: '159000' }
+                ]
+            });
+            var evt_data = {};
+            evt_data.total_quantity = '1';
+            evt_data.total_price = '159000';
+            evt_data.currency = 'KRW';
+            evt_data.products = [{ name: '애플 에어팟 Apple AirPods', quantity: '1', price: '159000' }, { name: '애플 펜 Apple Pen', quantity: '2', price: '105000' }];
+            logEvent("kakaoEvent", "buy", evt_data);
+        }
+        function clkGoogle(){
+            sendView();
+            gtag('event', 'page_view', { 
+                'send_to': 'AW-961230560', 
+                'ecomm_prodid': '12345',
+                'ecomm_pagetype': 'product', 
+                'ecomm_totalvalue': '159000'
+            });
+            var evt_data = {};
+            evt_data.ecomm_prodid = '12345';
+            evt_data.ecomm_pagetype = 'product';
+            evt_data.ecomm_totalvalue = '159000';
+            logEvent("gadEvent", "view_item", evt_data);
+
+            /*
+            gtag('event', 'page_view', { 
+                'send_to': 'AW-961230560', 
+                'ecomm_prodid': '12345',
+                'ecomm_pagetype': 'purchase', 
+                'ecomm_totalvalue': '159000'
+            });
+            */
+        }
+        function sendView(){
+            try
+            {
+                var evt_data = {};
+                evt_data.evt = 'view';
+                evt_data.p_no = '12345';
+                evt_data.p_name = '애플 에어팟 Apple AirPods';
+                evt_data.price = '226900';
+                evt_data.regular_price = '159000';
+                evt_data.thumb = 'http://storage0.mocoplex.com/uidev/network/img/prod_12345.jpg';
+                evt_data.cate1 = '전자제품';
+                evt_data.cate2 = '애플';
+                evt_data.cate3 = '';
+                evt_data.soldout = '0';
+                //nwTrkPushEvent(evt_data);
+                logEvent("ratEvent", "RAT_VIEW", evt_data);
+            }catch(e){}
+        }
+        function sendBuy(){
+            try
+            {
+                var evt_data = {};
+                evt_data.evt = 'buy';
+                evt_data.order_id = generateObjectId();
+                evt_data.p_no = '12345';
+                evt_data.p_name = '애플 에어팟 Apple AirPods';
+                evt_data.price = '159000';
+                evt_data.qty = '1';
+                evt_data.thumb = 'http://storage0.mocoplex.com/uidev/network/img/prod_12345.jpg';
+                //nwTrkPushEvent(evt_data);
+                logEvent("ratEvent", "RAT_BUY", evt_data);
+            }catch(e){}
+
+        }
+
+        function logEvent(command, name, params) {            
+            if (!command || !name) {
+                return;
+            }
+
+            var extparams = {};
+            if(name == 'RAT_BUY'){
+                extparams.item = encodeURI(params.p_no);
+            }
+
+            if (window.AdnxtWebInterface) {
+                params.platform = 'mobile_app_aos';
+                window.AdnxtWebInterface.logEvent(command, name, JSON.stringify(params), JSON.stringify(extparams));
+            } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.adnxtjs) {
+                params.platform = 'mobile_app_ios';
+                var message = {};
+                message.command = command;
+                message.name = name;
+                message.parameters = params;
+                message.extparams = extparams;
+                window.webkit.messageHandlers.adnxtjs.postMessage(message);
+            }
+        }
+        </script>
+    </body>
+</html>
